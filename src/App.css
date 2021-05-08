@@ -1,38 +1,80 @@
+.card {
+  width: 50%;
+ word-spacing: 2px;
+ 
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  background-color: #3F4964 !important;
+  color: White !important;
+  border-radius: 20px !important;
+  padding: 30px !important;
+}
+
+.question {
+  line-height: 30px !important;
+}
+
+
 .App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.cardHeader {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.cardContent {
+  display: flex !important;
+   margin-top: 30px;
+   margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card-left {
+  flex: 0.5 !important;
+  margin-right: 20px !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card-right {
+  flex: 0.5 !important;
+}
+
+.radio {
   display: flex;
-  flex-direction: column;
+ 
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.radio_input {
+  margin: 20px;
+}
+/* 
+.MuiPaper-root  {
+  background-color: aliceblue !important;
+} */
+
+.MuiButtonBase-root {
+  border: 3px solid #1885F2 !important;
+  border-radius: 10px !important;
 }
 
-.App-link {
-  color: #61dafb;
+.MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover {
+  background-color: #1885F2 !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.next-btn {
+  width: 40% !important;
+  margin-left: auto !important;
+  margin-right: 30px !important;
+  margin-top: -10px !important;
+  margin-bottom: 20px !important;
+  border: 0 !important; 
+  background-color: #1885F2 !important;
+  color: white  !important;
+letter-spacing: 3px !important;
+}
+
+.result {
+  margin: 0 auto !important;
 }

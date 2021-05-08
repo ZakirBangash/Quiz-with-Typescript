@@ -1,24 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import QuestionCard from './components/QuestionCard';
+import { getQuizDetails } from './services/quiz_services'
+import { QuestionType } from './Types/quiz_types'
+
 
 function App() {
+
+  const [quiz, setQuiz] = useState<QuestionType[]>([]);
+  let [currentState, setCurrentState] = useState(0);
+  let [showResult, setShowResult] = useState(false);
+  let [score, setScore] = useState(0)
+
+  const nextQuestion = (selectedOption: string) => {
+
+
+    const currentQuestion: QuestionType = quiz[currentState];
+
+    if (selectedOption === currentQuestion.answer) {
+      setScore(++score);
+    }
+
+    if (currentState !== quiz.length - 1)
+      setCurrentState(++currentState);
+    else {
+      setShowResult(true);
+    }
+  }
+
+  useEffect(() => {
+
+    async function fetchData() {
+      const questions: QuestionType[] = await getQuizDetails(5, 'easy');
+      setQuiz(questions);
+    }
+    fetchData();
+  }, [])
+
+  if (!quiz.length)
+    return <h3>Loading.. </h3>
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <QuestionCard question={quiz[currentState]?.question}
+        options={quiz[currentState]?.option}
+        callback={nextQuestion}
+        indexofQuestion={currentState}
+        showResult={showResult}
+        score={score}
+      />
+     
     </div>
   );
 }
